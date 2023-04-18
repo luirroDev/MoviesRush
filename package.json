@@ -1,0 +1,19 @@
+{
+  "name": "moviesrush",
+  "version": "1.0.0",
+  "description": "MoviesRush is a project that offers users the ability to see what are the trending movies, search by genre, favorite actors or directors, create favorites lists, and more. It offers a wide variety of options so that users can find exactly what they are looking for, all in one place.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luirroDev/MoviesRush.git"
+  },
+  "author": "@luirroDev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luirroDev/MoviesRush/issues"
+  },
+  "homepage": "https://github.com/luirroDev/MoviesRush#readme"
+}
