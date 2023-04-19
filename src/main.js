@@ -38,7 +38,7 @@ async function getCategoriesPreview() {
   
   const categories = data.genres;  
   const categoriesPreview = document.querySelector('.categoriesPreview-list');
-  
+
   categories.forEach(category => {
     
     const categoryContainer = document.createElement('div');
@@ -54,6 +54,3 @@ async function getCategoriesPreview() {
     categoriesPreview.appendChild(categoryContainer);
   });
 }
-
-getTrendingMoviesPreview();
-getCategoriesPreview();
