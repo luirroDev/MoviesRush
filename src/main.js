@@ -32,11 +32,17 @@ function createMovies(movies, container) {
     movieImage.setAttribute(
       'data-img', 
       'https://image.tmdb.org/t/p/w300' + movie.poster_path
-    );
-    movieContainer.addEventListener('click', () => {
-      location.hash = 'movie=' + movie.id
-    });    
-
+      );
+      movieContainer.addEventListener('click', () => {
+        location.hash = 'movie=' + movie.id
+      });    
+      movieImage.addEventListener('error', () => {
+        movieImage.setAttribute(
+        'src',
+        '../assets/failded-download-image.jpeg'  
+        )
+      })
+      
     
     movieContainer.appendChild(movieImage);
     container.appendChild(movieContainer);
@@ -103,7 +109,7 @@ async function getMoviesByCategory(id) {
 
 }
 
-async function getmoviesBySearch(query) {
+async function getmoviesBySearch(query) {  
   
   const { data } = await api ('/search/movie', {
     params: {
@@ -111,9 +117,7 @@ async function getmoviesBySearch(query) {
     },
   });
   
-  const movies = data.results; 
-  console.log(data.results);
-  
+  const movies = data.results;   
   createMovies(movies, genericSection)
 }
 
