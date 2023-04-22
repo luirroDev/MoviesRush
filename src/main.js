@@ -1,3 +1,5 @@
+/* Data */ 
+
 const api = axios.create({
   baseURL: `https://api.themoviedb.org/3`,
   headers: {
@@ -7,6 +9,29 @@ const api = axios.create({
     'api_key': API_KEY
   } 
 });
+
+function likedMoviesList() {
+
+  const item = JSON.parse(localStorage.getItem('liked_movies'));  
+  let movies;
+  item ? movies = item : movies = {};
+
+  return movies;
+}
+
+function likeMovie(movie) {
+
+  const likedMovies = likedMoviesList();
+
+  if(likedMovies[movie.id]){
+    likedMovies[movie.id] = undefined;
+  } else {
+    likedMovies[movie.id] = movie;
+  }
+
+  localStorage.setItem('liked_movies', JSON.stringify(likedMovies));
+
+}
 
 /* Utils */ 
 
@@ -24,29 +49,47 @@ function createMovies(movies, container, clean = true) {
   if(clean){
     container.innerHTML = '';
   } 
+  const likedMoviesIds = Object.keys(likedMoviesList());  
 
   movies.forEach(movie => {
     const movieContainer = document.createElement('div');
     movieContainer.classList.add('movie-container');
 
     const movieImage = document.createElement('img');
-    movieImage.classList.add('movie-img');
+    movieImage.classList.add('movie-img');    
+
+    const btnFavMovie = document.createElement('button');
+    btnFavMovie.classList.add('movie-btn');
+
+    likedMoviesIds.forEach(ID => {
+      if(ID == movie.id) {
+        btnFavMovie.classList.add('movie-btn--liked');
+      }
+    });
+
+    btnFavMovie.addEventListener('click', () => {
+      btnFavMovie.classList.toggle('movie-btn--liked');
+      likeMovie(movie);
+      getLikedMovies();
+      getTrendingMoviesPreview();
+    });
+
     movieImage.setAttribute('alt', movie.title);
     movieImage.setAttribute(
       'data-img', 
       'https://image.tmdb.org/t/p/w300' + movie.poster_path
-      );
-      movieContainer.addEventListener('click', () => {
+    );
+    movieImage.addEventListener('click', () => {
         location.hash = 'movie=' + movie.id
-      });    
-      movieImage.addEventListener('error', () => {
+    });    
+    movieImage.addEventListener('error', () => {
         movieImage.setAttribute(
         'src',
         '../assets/failded-download-image.jpeg'  
         )
-      })
+    });
       
-    
+    movieContainer.appendChild(btnFavMovie);
     movieContainer.appendChild(movieImage);
     container.appendChild(movieContainer);
     lazyLoader.observe(movieImage);
@@ -64,6 +107,7 @@ function createCategories(categories, container) {
 
     const categoryTitle = document.createElement('h3');
     categoryTitle.classList.add('category-title');
+
     categoryTitle.setAttribute('id', 'id' + category.id)
     categoryTitle.addEventListener('click', () => {
       location.hash = `#category=${category.id}-${category.name}`;
@@ -218,4 +262,10 @@ async function getRecommendationsMovieByID(movie_id) {
 
   createMovies(data.results, relatedMoviesContainer);
 
+}
+
+function getLikedMovies() {
+  const likedMovies = Object.values(likedMoviesList());
+
+  createMovies(likedMovies, likedMovieList);
 }

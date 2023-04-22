@@ -89,11 +89,13 @@ button {
 
 
 /* Shared */
-.header-container, .trendingPreview-header, .categoriesPreview-container {
+.header-container, 
+.trendingPreview-header, 
+.categoriesPreview-container {
   padding: 10px 15px;
 }
 
-.trendingPreview-container, .categoriesPreview-container {
+.trendingPreview-container, .categoriesPreview-container, .liked-container {
   margin-top: 35px;
 }
 
@@ -103,6 +105,7 @@ button {
 
 .movie-container {
   cursor: pointer;
+  position: relative;
 }
 
 .movie-container--loading {
@@ -131,7 +134,38 @@ button {
   min-height: 175px;
 }
 
-.categoriesPreview-list, .categories-list {
+.movie-btn {
+  position: absolute;
+  background-color: var(--purple-medium-2);
+  top: 5px;
+  right: 5px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  transition: all 0.3s ease;
+}
+
+.movie-btn::before {
+  margin-top: 2px;
+  content: '🤍';
+}
+
+.movie-btn--liked {
+  background-color: var(--purple-light-2);
+  box-shadow: 0px 0px 10px 2px var(--purple-dark-1);
+}
+
+.movie-btn--liked::before {
+  margin-top: 2px;
+  content: '❤️';
+}
+
+.categoriesPreview-list, 
+.categories-list {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -225,10 +259,17 @@ button {
 }
 
 /* Trending */
-.trendingPreview-header {
+.trendingPreview-header,
+.liked-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.liked-header {
+  padding: 5px;
+  padding-top: 0px;
+  margin-bottom: 20px;
 }
 
 .trendingPreview-btn {
@@ -239,21 +280,24 @@ button {
   width: 85px;
 }
 
-.trendingPreview-movieList {
+.trendingPreview-movieList,
+.liked-movieList {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  height: 241px;
-  padding-left: 24px;
+  height: 240px;
+  padding-left: 20px;
   padding-bottom: 16px;
 }
 
-.trendingPreview-movieList .movie-container {
+.trendingPreview-movieList .movie-container,
+.liked-container .movie-container {
   display: inline-block;
   margin-right: 8px;
 }
 
-.trendingPreview-movieList .movie-container .movie-img {
+.trendingPreview-movieList .movie-container .movie-img,
+.liked-container .liked-movieList .movie-img{
   height: 225px;
   min-height: 225px;
   max-height: 225px;
