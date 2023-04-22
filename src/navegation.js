@@ -43,7 +43,6 @@ function navigator() {
   }
 }
 function homePage() {
-  console.log('On Home!!!');
 
   headerSection.classList.remove('header-container--long');
   headerSection.style.background = '';
@@ -64,7 +63,6 @@ function homePage() {
   getLikedMovies();
 }
 function categoriesPage() {
-  console.log('On categories!!!');  
 
   headerSection.classList.remove('header-container--long');
   headerSection.style.background = '';
@@ -89,7 +87,6 @@ function categoriesPage() {
   inifiniteScroll = getPaginatedMoviesByCategory(categoryID);
 }
 function moviespage() {  
-  console.log('On Movie!!!');
 
   headerSection.classList.add('header-container--long');
   arrowBtn.classList.remove('inactive');
@@ -110,7 +107,6 @@ function moviespage() {
   getMovieByID(movieID);
 }
 function searchPage() {  
-  console.log('On Search!!!');
 
   headerSection.classList.remove('header-container--long');
   headerSection.style.background = '';
@@ -132,7 +128,6 @@ function searchPage() {
   inifiniteScroll = getPaginatedMoviesBySearch(query);
 }
 function trendsPage() {
-  console.log('On Trends!!!');  
 
   headerSection.classList.remove('header-container--long');
   headerSection.style.background = '';
