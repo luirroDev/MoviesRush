@@ -470,3 +470,32 @@ footer a {
     opacity: 0;
   }
 }
+
+/* Media-Querys */
+
+@media (min-width: 500px) {
+
+  body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .header-searchForm {
+    display: none;
+  }  
+  .principal-main * {
+    display: none;
+  }
+  .principal-main {
+    height: 80%;
+    width: 100%;
+    max-width: 800px;
+    align-self: center;
+    background-image: url('../assets/under-construction.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; 
+  }
+}

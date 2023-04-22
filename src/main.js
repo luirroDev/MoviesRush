@@ -85,8 +85,8 @@ function createMovies(movies, container, clean = true) {
     movieImage.addEventListener('error', () => {
         movieImage.setAttribute(
         'src',
-        '../assets/failded-download-image.jpeg'  
-        )
+        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2F404&psig=AOvVaw1nCNriFEV8I9VPoUTtaVSW&ust=1682266623496000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPCbu9bxvf4CFQAAAAAdAAAAABAL'  
+        );
     });
       
     movieContainer.appendChild(btnFavMovie);
